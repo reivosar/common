@@ -26,7 +26,7 @@ public class JapaneseHolidays extends ValueObject<JapaneseHolidays>
 			final InputStreamReader isr   = new InputStreamReader   (bis, Charset.forName("MS932"));
 			final BufferedReader br       = new BufferedReader      (isr))
 		{
-			br.readLine();//ヘッダ行読み飛ばし
+			br.readLine();
 			br.lines()
 				.filter  (line    -> (line != null) && (line.split(",").length == 2))
 				.map     (line    -> resolveHoliday    (line.split(",")))

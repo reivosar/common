@@ -1,13 +1,21 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'java'
 }
 
+group = 'reivosar-java-common'
 sourceCompatibility = '11'
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 repositories {
