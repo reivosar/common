@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
 
+import reivosar.common.util.concurrent.ExecutorServiceProvider;
+
 public class PromiseHandler<T>
 {
 	private final ExecutorServiceProvider executorServiceProvider;

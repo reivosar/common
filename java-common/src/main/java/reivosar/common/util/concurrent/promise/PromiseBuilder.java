@@ -3,6 +3,8 @@ package reivosar.common.util.concurrent.promise;
 import java.util.Collection;
 import java.util.Optional;
 
+import reivosar.common.util.concurrent.CompletableFutures;
+
 class PromiseBuilder<T> {
 
 	Promise<T> build(final CompletableFutures<T> futures) {

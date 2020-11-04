@@ -1,4 +1,4 @@
-package reivosar.common.util.concurrent.promise;
+package reivosar.common.util.concurrent;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -3,6 +3,10 @@ package reivosar.common.util.concurrent.promise;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
+import reivosar.common.util.concurrent.CompletableFutureResultWrapper;
+import reivosar.common.util.concurrent.CompletableFutures;
+import reivosar.common.util.concurrent.ExecutorServiceProvider;
+
 class PromiseHandlerInvoker<T> {
 
 	private final ExecutorServiceProvider executorServiceProvider;
