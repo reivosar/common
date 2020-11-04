@@ -15,7 +15,11 @@ public class PromiseHandler<T>
 	private static final long DEFAULT_TIMEOUT = 30;
 
 	PromiseHandler() {
-		this(Executors.newFixedThreadPool(1));
+		this(1);
+	}
+
+	PromiseHandler(int multiple) {
+		this(Executors.newFixedThreadPool(multiple));
 	}
 
 	PromiseHandler(final ExecutorService executorService) {

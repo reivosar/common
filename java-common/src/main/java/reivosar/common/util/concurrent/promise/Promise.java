@@ -9,7 +9,7 @@ public interface Promise<T> extends PromiseResultHolder<T>
 	}
 
 	public static <T>PromiseHandler<T> multi(final int multiple) {
-		return new PromiseHandler<T>();
+		return new PromiseHandler<T>(multiple);
 	}
 
 	default Promise<T> onSuccess(final Consumer<T> consumer) {
