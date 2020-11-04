@@ -12,7 +12,7 @@ class PromiseHandlerInvoker<T> {
 	private final ExecutorServiceProvider executorServiceProvider;
 	private final PromiseTask<T> promiseTask;
 
-	public PromiseHandlerInvoker(ExecutorServiceProvider executorServiceProvider, PromiseTask<T> promiseTask) {
+	PromiseHandlerInvoker(ExecutorServiceProvider executorServiceProvider, PromiseTask<T> promiseTask) {
 		this.executorServiceProvider = executorServiceProvider;
 		this.promiseTask = promiseTask;
 	}
