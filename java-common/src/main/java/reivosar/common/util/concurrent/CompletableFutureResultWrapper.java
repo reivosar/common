@@ -2,17 +2,17 @@ package reivosar.common.util.concurrent;
 
 import java.util.concurrent.Future;
 
-class CompletableFutureResultWrapper<T> {
+public class CompletableFutureResultWrapper<T> {
 
 	private final T result;
 	private final Throwable error;
 
-	CompletableFutureResultWrapper(T result, Throwable error) {
+	public CompletableFutureResultWrapper(T result, Throwable error) {
 		this.result = result;
 		this.error  = error;
 	}
 
-	static <T> CompletableFutureResultWrapper<T> of(final Future<T> future) {
+	public static <T> CompletableFutureResultWrapper<T> of(final Future<T> future) {
 		try {
 			return new CompletableFutureResultWrapper<T>(future.get(), null);
 		} catch (Throwable error) {
@@ -20,7 +20,7 @@ class CompletableFutureResultWrapper<T> {
 		}
 	}
 
-	static <T> CompletableFutureResultWrapper<T> of(T result, Throwable error) {
+	public static <T> CompletableFutureResultWrapper<T> of(T result, Throwable error) {
 		return new CompletableFutureResultWrapper<T>(result, error);
 	}
 
