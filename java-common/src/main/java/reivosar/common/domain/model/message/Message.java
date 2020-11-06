@@ -33,4 +33,8 @@ public class Message extends Entity<MessageId, Message>
 	public MessageId publicId() {
 		return messageId;
 	}
+
+	public String channelAsString() {
+		return messageChannel.value;
+	}
 }

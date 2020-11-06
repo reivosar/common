@@ -6,6 +6,10 @@ public class MessageId extends Identity<MessageId>
 {
 	final String value;
 
+	public MessageId() {
+		this(genereteNativeIdByUUID());
+	}
+
 	public MessageId(String value) {
 		this.value = value;
 	}

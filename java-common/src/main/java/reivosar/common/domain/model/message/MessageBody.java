@@ -2,7 +2,7 @@ package reivosar.common.domain.model.message;
 
 import reivosar.common.domain.model.ValueObject;
 
-public abstract class MessageBody extends ValueObject<MessageBody> {
+public class MessageBody extends ValueObject<MessageBody> {
 
 	final MessageBodyType messageBodyType;
 	final MessagePayload messagePayload;
