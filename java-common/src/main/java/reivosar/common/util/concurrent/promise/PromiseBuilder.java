@@ -25,7 +25,7 @@ class PromiseBuilder<T> {
 				return results().stream().findFirst().get();
 			}
 			public Optional<T> result() {
-				return Optional.of(nullableResult());
+				return Optional.ofNullable(nullableResult());
 			}
 			public Collection<T> results() {
 				return futures.results();
@@ -35,7 +35,7 @@ class PromiseBuilder<T> {
 				return errors().stream().findFirst().get();
 			}
 			public Optional<Throwable> error() {
-				return Optional.of(nullableError());
+				return Optional.ofNullable(nullableError());
 			}
 			public Collection<Throwable> errors() {
 				return futures.errors();
