@@ -1,14 +1,25 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'java'
+    id 'maven'
 }
 
-group = 'reivosar-java-common'
+group = 'reivosar.java'
+version = '0.1-SNAPSHOT'
+archivesBaseName = 'reivosar-common-lib'
 sourceCompatibility = '11'
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file:${System.getProperty('user.home')}/.m2/repository")
+        }
     }
 }
 
@@ -20,6 +31,7 @@ task fatJar(type: Jar) {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
