@@ -17,7 +17,12 @@ class PromiseHandlerInvoker<T> {
 		this.promiseTask = promiseTask;
 	}
 
-	Promise<T> invoke() {
+	void async() {
+		this.promiseTask.forEach(supplier -> executorServiceProvider.executeSupplyAsynch(supplier));
+		this.executorServiceProvider.start();
+	}
+
+	Promise<T> await() {
 		final CompletableFutures<T> futures = createCompletableFutures();
 		watch (futures);
 		return new PromiseBuilder<T>().build(futures);
@@ -26,6 +31,7 @@ class PromiseHandlerInvoker<T> {
 	private void watch(CompletableFutures<T> futures) {
 		final CompletableFuture<Void> all = futures.toAllOfFutures();
 		this.executorServiceProvider.start();
+		this.executorServiceProvider.awaitTermination();
 		while(!all.isDone()) {
 			if (this.executorServiceProvider.occurredTimeout())
 				this.executorServiceProvider.stop();

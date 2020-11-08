@@ -41,7 +41,11 @@ public class PromiseHandler<T>
 		return this;
 	}
 
-	public Promise<T> done() {
-		return new PromiseHandlerInvoker<T>(executorServiceProvider, promiseTask).invoke();
+	public void async() {
+		new PromiseHandlerInvoker<T>(executorServiceProvider, promiseTask).async();
+	}
+
+	public Promise<T> await() {
+		return new PromiseHandlerInvoker<T>(executorServiceProvider, promiseTask).await();
 	}
 }

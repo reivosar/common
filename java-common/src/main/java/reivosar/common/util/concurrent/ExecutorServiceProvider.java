@@ -19,6 +19,9 @@ public class ExecutorServiceProvider
 
 	public void start() {
 		this.executorService.shutdown();
+	}
+
+	public void awaitTermination() {
 		try {
 			if (!this.executorService.awaitTermination(timeout, TimeUnit.SECONDS))
 				this.occurredTimeout = true;
