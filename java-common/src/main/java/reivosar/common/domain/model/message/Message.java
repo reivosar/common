@@ -5,26 +5,22 @@ import reivosar.common.domain.model.EventableEnity;
 public class Message extends EventableEnity<MessageId, Message>
 {
 	private MessageId messageId;
-	private MessageChannel messageChannel;
 	private MessageMetaData messageMetaData;
 	private MessageBody messageBody;
 
 	public Message(
 		MessageId messageId,
-		MessageChannel messageChannel,
 		MessageBody messageBody)
 	{
-		this(messageId, messageChannel, new MessageMetaData(), messageBody);
+		this(messageId, new MessageMetaData(), messageBody);
 	}
 
 	public Message(
 		MessageId messageId,
-		MessageChannel messageChannel,
 		MessageMetaData messageMetaData,
 		MessageBody messageBody)
 	{
 		setMessageId       (messageId);
-		setMessageChannel  (messageChannel);
 		setMessageMetaData (messageMetaData);
 		setMessageBody     (messageBody);
 	}
@@ -33,7 +29,6 @@ public class Message extends EventableEnity<MessageId, Message>
 		apply(
 			new MessageCreated (
 				this.messageId,
-				this.messageChannel,
 				this.messageMetaData,
 				this.messageBody
 			)
@@ -54,10 +49,6 @@ public class Message extends EventableEnity<MessageId, Message>
 
 	private void setMessageId(MessageId messageId) {
 		this.messageId = messageId;
-	}
-
-	private void setMessageChannel(MessageChannel messageChannel) {
-		this.messageChannel = messageChannel;
 	}
 
 	private void setMessageMetaData(MessageMetaData messageMetaData) {
