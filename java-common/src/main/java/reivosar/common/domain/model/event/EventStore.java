@@ -3,17 +3,18 @@ package reivosar.common.domain.model.event;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
-public abstract class EventableAggregate
+public class EventStore
 {
 	private final Collection<Event> events;
 
-	public EventableAggregate() {
-		this.events = Collections.emptyList();
+	public EventStore() {
+		this.events = new ConcurrentLinkedQueue<Event>();
 	}
 
-	protected void eventOccurred(Event...domainEvents) {
+	public void eventOccurred(Event...domainEvents) {
 		this.events.addAll(Arrays.asList(domainEvents));
 	}
 
@@ -26,4 +27,12 @@ public abstract class EventableAggregate
 			.filter  (event -> event.eventVersion().equals(eventVersion))
 			.collect (Collectors.toUnmodifiableList());
 	}
+
+	public void clear() {
+        this.events.clear();
+    }
+
+    public boolean hasEvents() {
+        return !events.isEmpty();
+    }
 }
