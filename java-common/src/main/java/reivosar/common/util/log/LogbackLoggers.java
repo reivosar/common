@@ -3,7 +3,7 @@ package reivosar.common.util.log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class LogbackLoggers implements Loggers
+class LogbackLoggers extends LoggersTemplate
 {
 	private final Logger logger;
 
