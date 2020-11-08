@@ -6,7 +6,9 @@ public interface Event
 		return new EventId();
 	}
 
-	EventVersion eventVersion();
+	default EventVersion eventVersion() {
+		return new EventVersion();
+	}
 
 	default EventOccurredTime eventOccurredTime() {
 		return new EventOccurredTime();

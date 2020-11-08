@@ -6,6 +6,10 @@ public class EventVersion extends ValueObject<EventVersion>
 {
 	final int value;
 
+	public EventVersion() {
+		this(1);
+	}
+
 	public EventVersion(int value) {
 		this.value = value;
 	}

@@ -1,13 +1,13 @@
 package reivosar.common.domain.model.message;
 
-import reivosar.common.domain.model.Entity;
+import reivosar.common.domain.model.EventableEnity;
 
-public class Message extends Entity<MessageId, Message>
+public class Message extends EventableEnity<MessageId, Message>
 {
-	final MessageId messageId;
-	final MessageChannel messageChannel;
-	final MessageMetaData messageMetaData;
-	final MessageBody messageBody;
+	private MessageId messageId;
+	private MessageChannel messageChannel;
+	private MessageMetaData messageMetaData;
+	private MessageBody messageBody;
 
 	public Message(
 		MessageId messageId,
@@ -23,10 +23,28 @@ public class Message extends Entity<MessageId, Message>
 		MessageMetaData messageMetaData,
 		MessageBody messageBody)
 	{
-		this.messageId       = messageId;
-		this.messageChannel  = messageChannel;
-		this.messageMetaData = messageMetaData;
-		this.messageBody     = messageBody;
+		setMessageId       (messageId);
+		setMessageChannel  (messageChannel);
+		setMessageMetaData (messageMetaData);
+		setMessageBody     (messageBody);
+	}
+
+	public Message createMessage() {
+		apply(
+			new MessageCreated (
+				this.messageId,
+				this.messageChannel,
+				this.messageMetaData,
+				this.messageBody
+			)
+		);
+		return this;
+	}
+
+	public Message changeMessageBody(MessageBody messageBody) {
+		setMessageBody(messageBody);
+		apply(new MessageBodyChanged(messageId, messageBody));
+		return this;
 	}
 
 	@Override
@@ -34,7 +52,19 @@ public class Message extends Entity<MessageId, Message>
 		return messageId;
 	}
 
-	public String channelAsString() {
-		return messageChannel.value;
+	private void setMessageId(MessageId messageId) {
+		this.messageId = messageId;
+	}
+
+	private void setMessageChannel(MessageChannel messageChannel) {
+		this.messageChannel = messageChannel;
+	}
+
+	private void setMessageMetaData(MessageMetaData messageMetaData) {
+		this.messageMetaData = messageMetaData;
+	}
+
+	private void setMessageBody(MessageBody messageBody) {
+		this.messageBody = messageBody;
 	}
 }
