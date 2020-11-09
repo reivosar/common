@@ -11,6 +11,7 @@ abstract class LoggersTemplate implements Loggers {
 	public void warn(String msg) {
 		this.warn(msg, new Object[0]);
 	}
+
 	@Override
 	public void trace(String msg) {
 		this.trace(msg, new Object[0]);
