@@ -15,7 +15,7 @@ import reivosar.common.domain.service.event.EventPublisher;
 import reivosar.common.util.JsonUtils;
 import reivosar.common.util.concurrent.promise.Promise;
 
-@Service("reivosar.common.infrastructure.event.LocalKafkaEventPublisher")
+@Service
 public class LocalKafkaEventPublisher implements EventPublisher
 {
 	private final KafkaTemplate<String, String> template;
