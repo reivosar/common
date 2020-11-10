@@ -1,8 +1,8 @@
 package reivosar.common.domain.model.message;
 
-import reivosar.common.domain.model.event.Event;
+import reivosar.common.util.JsonUtils;
 
-public class MessageBodyChanged implements Event
+public class MessageBodyChanged extends MessageEventTemplate
 {
 	private final MessageId messageId;
 	private final MessageBody messageBody;
@@ -18,5 +18,9 @@ public class MessageBodyChanged implements Event
 
 	public MessageBody getMessageBody() {
 		return messageBody;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(JsonUtils.toJson(new MessageBodyChanged(new MessageId(), MessageBody.of("test"))));
 	}
 }

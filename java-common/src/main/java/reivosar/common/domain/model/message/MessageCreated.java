@@ -1,8 +1,6 @@
 package reivosar.common.domain.model.message;
 
-import reivosar.common.domain.model.event.Event;
-
-public class MessageCreated implements Event
+public class MessageCreated extends MessageEventTemplate
 {
 	private final MessageId messageId;
 	private final MessageMetaData messageMetaData;
