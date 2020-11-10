@@ -14,10 +14,10 @@ public class KafkMessageRepository implements MessageReposiory {
 
 	private static final Loggers loggers = Loggers.getLoggers(KafkMessageRepository.class);
 
-    private final EventPublisher<MessageId, Message> eventPublisher;
+    private final EventPublisher eventPublisher;
 
     @Autowired
-	public KafkMessageRepository(EventPublisher<MessageId, Message> eventPublisher) {
+	public KafkMessageRepository(EventPublisher eventPublisher) {
 		this.eventPublisher = eventPublisher;
 	}
 

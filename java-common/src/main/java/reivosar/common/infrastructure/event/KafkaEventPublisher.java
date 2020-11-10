@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 
 import reivosar.common.domain.model.EventableEnity;
 import reivosar.common.domain.model.Identity;
+import reivosar.common.domain.model.event.Event;
 import reivosar.common.domain.service.event.EventPublisher;
 import reivosar.common.util.JsonUtils;
 import reivosar.common.util.concurrent.promise.Promise;
 
 @Service
-public class KafkaEventPublisher<
-	ID extends Identity<ID>, ENTITY extends EventableEnity<ID, ENTITY>>
-implements EventPublisher<ID, ENTITY>
+public class KafkaEventPublisher implements EventPublisher
 {
 	private final KafkaTemplate<String, String> template;
 
@@ -27,21 +26,25 @@ implements EventPublisher<ID, ENTITY>
 	}
 
 	@Override
-	public void asyncPublish(ENTITY entity) {
+	public <ID extends Identity<ID>, ENTITY extends EventableEnity<ID, ENTITY>>
+	void asyncPublish(ENTITY entity)
+	{
 		Promise.single()
-			.then  (eventSuppliers(entity))
+			.then  (eventSuppliers(entity.allEvents()))
 			.async ();
 	}
 
 	@Override
-	public void awaitPublish(ENTITY entity) {
+	public <ID extends Identity<ID>, ENTITY extends EventableEnity<ID, ENTITY>>
+	void awaitPublish(ENTITY entity)
+	{
 		Promise.single()
-			.then  (eventSuppliers(entity))
+			.then  (eventSuppliers(entity.allEvents()))
 			.await ();
 	}
 
-	private Collection<Supplier<Object>> eventSuppliers(final ENTITY entity) {
-		return 	entity.allEvents().stream()
+	private Collection<Supplier<Object>> eventSuppliers(final Collection<Event> events) {
+		return 	events.stream()
 				.map(event -> new Supplier<Object> () {
 					@Override
 					public Object get() {
