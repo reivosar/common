@@ -6,8 +6,11 @@ import java.util.function.Supplier;
 import reivosar.common.util.concurrent.CompletableFutureResultWrapper;
 import reivosar.common.util.concurrent.CompletableFutures;
 import reivosar.common.util.concurrent.ExecutorServiceProvider;
+import reivosar.common.util.log.Loggers;
 
-class PromiseHandlerInvoker<T> {
+class PromiseHandlerInvoker<T>
+{
+	private final Loggers loggers = Loggers.getLoggers(PromiseHandlerInvoker.class);
 
 	private final ExecutorServiceProvider executorServiceProvider;
 	private final PromiseTask<T> promiseTask;
@@ -18,8 +21,12 @@ class PromiseHandlerInvoker<T> {
 	}
 
 	void async() {
-		this.promiseTask.forEach(supplier -> executorServiceProvider.executeSupplyAsynch(supplier));
-		this.executorServiceProvider.start();
+		try {
+			this.promiseTask.forEach(supplier -> executorServiceProvider.executeSupplyAsynch(supplier));
+			this.executorServiceProvider.start();
+		} catch (Exception e) {
+			loggers.error("Promise Task Error.", e);
+		}
 	}
 
 	Promise<T> await() {

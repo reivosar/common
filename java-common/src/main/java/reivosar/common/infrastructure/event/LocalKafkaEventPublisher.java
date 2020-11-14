@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 import reivosar.common.domain.model.EventableEnity;
 import reivosar.common.domain.model.Identity;
 import reivosar.common.domain.model.event.Event;
-import reivosar.common.domain.service.event.EventPublisher;
+import reivosar.common.domain.service.event.DomainEventPublisher;
 import reivosar.common.util.JsonUtils;
 import reivosar.common.util.concurrent.promise.Promise;
 
 @Component
-public class LocalKafkaEventPublisher implements EventPublisher
+public class LocalKafkaEventPublisher implements DomainEventPublisher
 {
 	@Autowired
 	private final KafkaTemplate<String, String> template;

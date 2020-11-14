@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import reivosar.common.domain.model.message.Message;
 import reivosar.common.domain.model.message.MessageId;
 import reivosar.common.domain.model.message.MessageReposiory;
-import reivosar.common.domain.service.event.EventPublisher;
+import reivosar.common.domain.service.event.DomainEventPublisher;
 import reivosar.common.util.log.Loggers;
 
 @Component
@@ -15,10 +15,10 @@ public class KafkMessageRepository implements MessageReposiory {
 	private static final Loggers loggers = Loggers.getLoggers(KafkMessageRepository.class);
 
 	@Autowired
-    private final EventPublisher eventPublisher;
+    private final DomainEventPublisher domainEventPublisher;
 
-	public KafkMessageRepository(EventPublisher eventPublisher) {
-		this.eventPublisher = eventPublisher;
+	public KafkMessageRepository(DomainEventPublisher domainEventPublisher) {
+		this.domainEventPublisher = domainEventPublisher;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class KafkMessageRepository implements MessageReposiory {
 	@Override
 	public void save(Message message) {
 		loggers.info("start");
-		eventPublisher.asyncPublish(message);
+		domainEventPublisher.asyncPublish(message);
 		loggers.info("end");
 	}
 }
