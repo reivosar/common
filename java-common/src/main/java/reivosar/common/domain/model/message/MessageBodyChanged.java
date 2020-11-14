@@ -2,11 +2,8 @@ package reivosar.common.domain.model.message;
 
 public class MessageBodyChanged extends MessageEventTemplate
 {
-	private MessageId messageId;
-	private MessageBody messageBody;
-
-	public MessageBodyChanged() {
-	}
+	private final MessageId messageId;
+	private final MessageBody messageBody;
 
 	public MessageBodyChanged(MessageId messageId, MessageBody messageBody) {
 		this.messageId   = messageId;
