@@ -16,12 +16,12 @@ import reivosar.common.util.JsonUtils;
 import reivosar.common.util.concurrent.promise.Promise;
 
 @Component
-public class LocalKafkaEventPublisher implements DomainEventPublisher
+public class LocalKafkaDomainEventPublisher implements DomainEventPublisher
 {
 	@Autowired
 	private final KafkaTemplate<String, String> template;
 
-	public LocalKafkaEventPublisher(KafkaTemplate<String, String> template) {
+	public LocalKafkaDomainEventPublisher(KafkaTemplate<String, String> template) {
 		this.template = template;
 	}
 
