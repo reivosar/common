@@ -31,11 +31,11 @@ public class KafkMessageRepository implements MessageReposiory {
 		loggers.info("Event publishing start: publicId:" + message.publicId());
 		domainEventPublisher
 			.awaitPublish(message)
-			.onSuccess(result ->
-				loggers.debug("Event publishing success. "
+			.onSuccess(
+				result -> loggers.debug("Event publishing success. "
 					+ "event:" + message.toString() +
-					" ,result:" + result.toString()
-			))
+					" ,result:" + result.toString())
+			)
 			.onFailure(
 				t -> loggers.error("Event publishing error.", t)
 			);
