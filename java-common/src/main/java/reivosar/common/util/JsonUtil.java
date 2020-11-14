@@ -3,7 +3,6 @@ package reivosar.common.util;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtil
@@ -28,15 +27,7 @@ public class JsonUtil
 
 	public static Map<String, Object> toPropertyMap(String json) {
 		try {
-			JsonNode rootNode = ObjectMapperHolder.mapper.readTree(json);
-			rootNode.fieldNames().forEachRemaining(name -> {
-				JsonNode jsonNode = rootNode.get(name);
-				System.out.println(jsonNode);
-				jsonNode.elements().forEachRemaining(childName -> {
-					System.out.println(childName);
-				});
-			});
-			return null;
+			return toMap(json);
 		} catch (Throwable e) {
 			throw new JsonUtil.Exception("JsonUtil deserialize error.", e);
 		}
