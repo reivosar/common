@@ -28,7 +28,7 @@ public class KafkMessageRepository implements MessageReposiory {
 
 	@Override
 	public void save(Message message) {
-		loggers.info("start");
+		loggers.info("Event publishing start: publicId:" + message.publicId());
 		domainEventPublisher
 			.awaitPublish(message)
 			.onSuccess(result ->
@@ -39,6 +39,6 @@ public class KafkMessageRepository implements MessageReposiory {
 			.onFailure(
 				t -> loggers.error("Event publishing error.", t)
 			);
-		loggers.info("end");
+		loggers.info("Event publishing end: publicId:" + message.publicId());
 	}
 }
