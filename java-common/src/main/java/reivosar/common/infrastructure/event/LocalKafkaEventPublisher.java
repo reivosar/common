@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import reivosar.common.domain.model.EventableEnity;
 import reivosar.common.domain.model.Identity;
@@ -15,12 +15,12 @@ import reivosar.common.domain.service.event.EventPublisher;
 import reivosar.common.util.JsonUtils;
 import reivosar.common.util.concurrent.promise.Promise;
 
-@Service
+@Component
 public class LocalKafkaEventPublisher implements EventPublisher
 {
+	@Autowired
 	private final KafkaTemplate<String, String> template;
 
-	@Autowired
 	public LocalKafkaEventPublisher(KafkaTemplate<String, String> template) {
 		this.template = template;
 	}
@@ -51,7 +51,6 @@ public class LocalKafkaEventPublisher implements EventPublisher
 						return template.send(event.eventTopic().asString(),
 								             JsonUtils.toJson(event));
 					}
-				})
-				.collect(Collectors.toUnmodifiableList());
+				}).collect(Collectors.toUnmodifiableList());
 	}
 }

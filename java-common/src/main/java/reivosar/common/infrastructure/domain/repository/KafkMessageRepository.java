@@ -14,9 +14,9 @@ public class KafkMessageRepository implements MessageReposiory {
 
 	private static final Loggers loggers = Loggers.getLoggers(KafkMessageRepository.class);
 
+	@Autowired
     private final EventPublisher eventPublisher;
 
-    @Autowired
 	public KafkMessageRepository(EventPublisher eventPublisher) {
 		this.eventPublisher = eventPublisher;
 	}
