@@ -26,7 +26,7 @@ public class EventStore extends ValueObject<EventStore>
 
 	public Collection<Event> allEvents(EventVersion eventVersion) {
 		return allEvents().stream()
-			.filter  (event -> event.eventVersion().equals(eventVersion))
+			.filter  (event -> event.getEventVersion().equals(eventVersion))
 			.collect (Collectors.toUnmodifiableList());
 	}
 

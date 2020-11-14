@@ -12,8 +12,9 @@ import reivosar.common.domain.model.EventableEnity;
 import reivosar.common.domain.model.Identity;
 import reivosar.common.domain.model.event.Event;
 import reivosar.common.domain.service.event.DomainEventPublisher;
-import reivosar.common.util.JsonUtils;
+import reivosar.common.util.JsonUtil;
 import reivosar.common.util.concurrent.promise.Promise;
+import reivosar.common.util.reflect.BeanUtil;
 
 @Component
 public class LocalKafkaDomainEventPublisher implements DomainEventPublisher
@@ -48,8 +49,8 @@ public class LocalKafkaDomainEventPublisher implements DomainEventPublisher
 				.map(event -> new Supplier<Object> () {
 					@Override
 					public Object get() {
-						return template.send(event.eventTopic().asString(),
-								             JsonUtils.toJson(event));
+						return template.send(event.getEventTopic().asString(),
+								             JsonUtil.toJson(BeanUtil.describe(event)));
 					}
 				}).collect(Collectors.toUnmodifiableList());
 	}

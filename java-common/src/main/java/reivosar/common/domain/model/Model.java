@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-abstract class Model implements Serializable
+public abstract class Model implements Serializable
 {
 	@Override
 	public boolean equals(Object obj) {

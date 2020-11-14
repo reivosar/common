@@ -2,17 +2,11 @@ package reivosar.common.domain.model.event;
 
 public interface Event extends java.io.Serializable
 {
-	default EventId eventId() {
-		return new EventId();
-	}
+	EventId getEventId();
 
-	default EventVersion eventVersion() {
-		return new EventVersion();
-	}
+	EventVersion getEventVersion();
 
-	EventTopic eventTopic();
+	EventTopic getEventTopic();
 
-	default EventOccurredTime eventOccurredTime() {
-		return new EventOccurredTime();
-	}
+	EventOccurredTime getEventOccurredTime();
 }
