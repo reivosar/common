@@ -36,11 +36,11 @@ public class LocalKafkaDomainEventPublisher implements DomainEventPublisher
 
 	@Override
 	public <ID extends Identity<ID>, ENTITY extends EventableEnity<ID, ENTITY>>
-	void awaitPublish(ENTITY entity)
+	Promise<Object> awaitPublish(ENTITY entity)
 	{
-		Promise.single()
-			.then  (eventSuppliers(entity.allEvents()))
-			.await ();
+		return Promise.single()
+				.then (eventSuppliers(entity.allEvents()))
+			    .await ();
 	}
 
 	private Collection<Supplier<Object>> eventSuppliers(final Collection<Event> events) {

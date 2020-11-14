@@ -29,7 +29,16 @@ public class KafkMessageRepository implements MessageReposiory {
 	@Override
 	public void save(Message message) {
 		loggers.info("start");
-		domainEventPublisher.asyncPublish(message);
+		domainEventPublisher
+			.awaitPublish(message)
+			.onSuccess(result ->
+				loggers.debug("Event publishing success. "
+					+ "event:" + message.toString() +
+					" ,result:" + result.toString()
+			))
+			.onFailure(
+				t -> loggers.error("Event publishing error.", t)
+			);
 		loggers.info("end");
 	}
 }
