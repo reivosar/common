@@ -10,14 +10,14 @@ import reivosar.common.domain.service.event.DomainEventPublisher;
 import reivosar.common.util.log.Loggers;
 
 @Component
-public class KafkMessageRepository implements MessageReposiory {
+public class DomainEventMessageRepository implements MessageReposiory {
 
-	private static final Loggers loggers = Loggers.getLoggers(KafkMessageRepository.class);
+	private static final Loggers loggers = Loggers.getLoggers(DomainEventMessageRepository.class);
 
 	@Autowired
     private final DomainEventPublisher domainEventPublisher;
 
-	public KafkMessageRepository(DomainEventPublisher domainEventPublisher) {
+	public DomainEventMessageRepository(DomainEventPublisher domainEventPublisher) {
 		this.domainEventPublisher = domainEventPublisher;
 	}
 
