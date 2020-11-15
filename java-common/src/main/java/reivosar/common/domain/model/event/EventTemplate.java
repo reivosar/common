@@ -1,5 +1,7 @@
 package reivosar.common.domain.model.event;
 
+import java.time.LocalDateTime;
+
 import reivosar.common.domain.model.Model;
 
 public abstract class EventTemplate extends Model implements Event
@@ -27,22 +29,22 @@ public abstract class EventTemplate extends Model implements Event
 
 
 	@Override
-	public EventId getEventId() {
-		return eventId;
+	public String getEventId() {
+		return eventId.value;
 	}
 
 	@Override
-	public EventVersion getEventVersion() {
-		return eventVersion;
+	public int getEventVersion() {
+		return eventVersion.value;
 	}
 
 	@Override
-	public EventTopic getEventTopic() {
-		return eventTopic;
+	public String getEventTopic() {
+		return eventTopic.value;
 	}
 
 	@Override
-	public EventOccurredTime getEventOccurredTime() {
-		return eventOccurredTime;
+	public LocalDateTime getEventOccurredTime() {
+		return eventOccurredTime.value.toLocalDateTime();
 	}
 }

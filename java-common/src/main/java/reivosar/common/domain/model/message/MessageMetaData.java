@@ -10,8 +10,12 @@ public class MessageMetaData extends ValueObject<MessageMetaData>
 	final Map<String, Object> values;
 
 	public MessageMetaData() {
-		this.values = Collections.emptyMap();
+		this(Collections.emptyMap());
 	}
+
+    public MessageMetaData(Map<String, Object> values) {
+        this.values = values;
+    }
 
 	public MessageMetaData set(String key, Object value) {
 		this.values.put(key, value);

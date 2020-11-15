@@ -11,7 +11,7 @@ public class JsonUtil
 
 	public static String toJson(Object obj) {
 		try {
-			return ObjectMapperHolder.mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+			return ObjectMapperHolder.mapper.writeValueAsString(obj);
 		} catch (Throwable e) {
 			throw new JsonUtil.Exception("JsonUtil serialize error.", e);
 		}

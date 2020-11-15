@@ -10,11 +10,11 @@ public class MessageBodyChanged extends MessageEventTemplate
 		this.messageBody = messageBody;
 	}
 
-	public MessageId getMessageId() {
-		return messageId;
+	public String getMessageId() {
+		return messageId.value;
 	}
 
-	public MessageBody getMessageBody() {
-		return messageBody;
+	public Object getMessageBody() {
+		return messageBody.messagePayload.value;
 	}
 }

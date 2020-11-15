@@ -1,5 +1,7 @@
 package reivosar.common.domain.model.message;
 
+import java.util.Map;
+
 public class MessageCreated extends MessageEventTemplate
 {
 	private final MessageId messageId;
@@ -16,15 +18,15 @@ public class MessageCreated extends MessageEventTemplate
 		this.messageBody     = messageBody;
 	}
 
-	public MessageId getMessageId() {
-		return messageId;
+	public String getMessageId() {
+		return messageId.value;
 	}
 
-	public MessageMetaData getMessageMetaData() {
-		return messageMetaData;
+	public Map<String, Object> getMessageMetaData() {
+		return messageMetaData.values;
 	}
 
-	public MessageBody getMessageBody() {
-		return messageBody;
+	public Object getMessageBody() {
+		return messageBody.messagePayload.value;
 	}
 }

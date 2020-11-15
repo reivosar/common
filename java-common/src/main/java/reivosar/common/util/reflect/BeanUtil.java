@@ -19,7 +19,7 @@ public class BeanUtil {
 
 	public static <T, V> T mapToBean(Map<String, V> map, Class<T> clazz) {
 		 try {
-			 if(ConstructorUtil.hasPublicDefaultConstructor(clazz)) {
+			 if(ConstructorUtil.existsPublicDefaultConstructor(clazz)) {
 				 T bean = ConstructorUtil.newInstanceWithPublicDefaultConstructor(clazz);
 				 populate (bean, map);
 				 return bean;
@@ -31,20 +31,20 @@ public class BeanUtil {
 		}
 	}
 
-	public static <V> void populate(Object bean, String paramName, Object value) {
+	public static <T>T populate(T bean, String paramName, Object value) {
 		try {
 			FieldUtil.setField(bean, paramName, value);
-		} catch (Throwable ignored) {
-		}
+		} catch (Throwable ignored) {}
+		return bean;
 	}
 
-	public static <V> void populate(Object bean, Map<String, V> map) {
+	public static <T, V> T populate(T bean, Map<String, V> map) {
 		map.forEach((paramName, value) -> {
 			try {
-				FieldUtil.setField(bean, paramName, value);
-			} catch (Throwable ignored) {
-			}
+				populate(bean, paramName, value);
+			} catch (Throwable ignored) {}
 		});
+		return bean;
 	}
 
 	public static class Exception extends RuntimeException {

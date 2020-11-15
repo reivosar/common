@@ -17,6 +17,10 @@ public class DateTime extends ValueObject<DateTime>
 		return new DateTime(LocalDateTime.now());
 	}
 
+    public LocalDateTime toLocalDateTime() {
+        return value;
+    }
+
 	public String formattedString(String format) {
 		return value.format(DateTimeFormatter.ofPattern(format));
 	}

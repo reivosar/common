@@ -1,12 +1,14 @@
 package reivosar.common.domain.model.event;
 
+import java.time.LocalDateTime;
+
 public interface Event extends java.io.Serializable
 {
-	EventId getEventId();
+	String getEventId();
 
-	EventVersion getEventVersion();
+	int getEventVersion();
 
-	EventTopic getEventTopic();
+	String getEventTopic();
 
-	EventOccurredTime getEventOccurredTime();
+	LocalDateTime getEventOccurredTime();
 }
