@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import reivosar.common.domain.model.EventableEnity;
+import reivosar.common.domain.model.EventableEntity;
 import reivosar.common.domain.model.Identity;
 import reivosar.common.domain.model.event.Event;
 import reivosar.common.domain.service.event.DomainEventPublisher;
@@ -26,7 +26,7 @@ public class LocalKafkaDomainEventPublisher implements DomainEventPublisher
 	}
 
 	@Override
-	public <ID extends Identity<ID>, ENTITY extends EventableEnity<ID, ENTITY>>
+	public <ID extends Identity<ID>, ENTITY extends EventableEntity<ID, ENTITY>>
 	void asyncPublish(ENTITY entity)
 	{
 		Promise.single()
@@ -35,7 +35,7 @@ public class LocalKafkaDomainEventPublisher implements DomainEventPublisher
 	}
 
 	@Override
-	public <ID extends Identity<ID>, ENTITY extends EventableEnity<ID, ENTITY>>
+	public <ID extends Identity<ID>, ENTITY extends EventableEntity<ID, ENTITY>>
 	Promise<Object> awaitPublish(ENTITY entity)
 	{
 		return Promise.single()

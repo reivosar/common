@@ -7,15 +7,15 @@ import reivosar.common.domain.model.event.EventStore;
 import reivosar.common.domain.model.event.EventVersion;
 
 @SuppressWarnings("unchecked")
-public abstract class EventableEnity<ID extends Identity<ID>, ENTITY> extends Entity<ID, ENTITY>
+public abstract class EventableEntity<ID extends Identity<ID>, ENTITY> extends Entity<ID, ENTITY>
 {
 	private final EventStore store;
 
-	public EventableEnity() {
+	public EventableEntity() {
 		this.store = new EventStore();
 	}
 
-	protected <R extends EventableEnity<ID, ENTITY>> R apply(Event...domainEvents) {
+	protected <R extends EventableEntity<ID, ENTITY>> R apply(Event...domainEvents) {
 		this.store.eventOccurred(domainEvents);
 		return (R) this;
 	}
@@ -28,7 +28,7 @@ public abstract class EventableEnity<ID extends Identity<ID>, ENTITY> extends En
 		return store.allEvents(eventVersion);
 	}
 
-	public <R extends EventableEnity<ID, ENTITY>> R clear() {
+	public <R extends EventableEntity<ID, ENTITY>> R clear() {
         this.store.clear();
         return (R) this;
     }
