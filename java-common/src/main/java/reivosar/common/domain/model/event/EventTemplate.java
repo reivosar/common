@@ -16,10 +16,10 @@ public abstract class EventTemplate extends Model implements Event
 	}
 
 	public EventTemplate(
-		EventId eventId,
-		EventVersion eventVersion,
-		EventTopic eventTopic,
-		EventOccurredTime eventOccurredTime)
+	    final EventId eventId,
+	    final EventVersion eventVersion,
+		final EventTopic eventTopic,
+		final EventOccurredTime eventOccurredTime)
 	{
 		this.eventId           = eventId;
 		this.eventVersion      = eventVersion;
