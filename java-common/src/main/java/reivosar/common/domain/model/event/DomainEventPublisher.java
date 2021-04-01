@@ -1,7 +1,6 @@
-package reivosar.common.domain.service.event;
+package reivosar.common.domain.model.event;
 
 import reivosar.common.domain.model.Identity;
-import reivosar.common.domain.model.event.EventableEntity;
 import reivosar.common.util.concurrent.promise.Promise;
 
 public interface DomainEventPublisher
