@@ -14,7 +14,7 @@ import reivosar.common.domain.model.event.EventableEntity;
 import reivosar.common.event.EventBus;
 import reivosar.common.util.concurrent.promise.Promise;
 
-@Component
+@Component("MessagingDomainEventPublisher")
 public class MessagingDomainEventPublisher implements DomainEventPublisher
 {
     private final EventBus eventBus;
@@ -29,7 +29,7 @@ public class MessagingDomainEventPublisher implements DomainEventPublisher
     void asyncPublish(ENTITY entity) {
         Promise.single()
             .then  (eventSuppliers(entity.allEvents()))
-        .async ();
+            .async ();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MessagingDomainEventPublisher implements DomainEventPublisher
     Promise<Object> awaitPublish(ENTITY entity)
     {
         return Promise.single()
-                .then (eventSuppliers(entity.allEvents()))
+                .then  (eventSuppliers(entity.allEvents()))
                 .await ();
     }
 
