@@ -31,7 +31,7 @@ class PromiseBuilder<T> {
 				return futures.results();
 			}
 			public Throwable nullableError() {
-				if (fail()) return null;
+				if (success()) return null;
 				return errors().stream().findFirst().get();
 			}
 			public Optional<Throwable> error() {
