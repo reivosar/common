@@ -1,10 +1,10 @@
 package reivosar.common.domain.model.event;
 
-import reivosar.common.domain.model.ValueObject;
+import reivosar.common.util.model.ValueObject;
 
 public class EventVersion extends ValueObject<EventVersion>
 {
-	final int value;
+	final Integer value;
 
 	public EventVersion() {
 		this(1);

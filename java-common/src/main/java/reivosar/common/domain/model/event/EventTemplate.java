@@ -2,7 +2,7 @@ package reivosar.common.domain.model.event;
 
 import java.time.LocalDateTime;
 
-import reivosar.common.domain.model.Model;
+import reivosar.common.util.model.Model;
 
 public abstract class EventTemplate extends Model implements Event
 {

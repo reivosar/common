@@ -1,6 +1,6 @@
 package reivosar.common.domain.model.event;
 
-import reivosar.common.domain.model.Identity;
+import reivosar.common.util.model.Identity;
 
 public class EventId extends Identity<EventId>
 {

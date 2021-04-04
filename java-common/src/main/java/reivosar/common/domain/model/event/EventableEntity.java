@@ -2,8 +2,8 @@ package reivosar.common.domain.model.event;
 
 import java.util.Collection;
 
-import reivosar.common.domain.model.Entity;
-import reivosar.common.domain.model.Identity;
+import reivosar.common.util.model.Entity;
+import reivosar.common.util.model.Identity;
 
 @SuppressWarnings("unchecked")
 public abstract class EventableEntity<ID extends Identity<ID>, ENTITY> extends Entity<ID, ENTITY>

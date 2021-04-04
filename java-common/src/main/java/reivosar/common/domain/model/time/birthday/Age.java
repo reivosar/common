@@ -1,6 +1,6 @@
 package reivosar.common.domain.model.time.birthday;
 
-import reivosar.common.domain.model.ValueObject;
+import reivosar.common.util.model.ValueObject;
 
 public class Age extends ValueObject<Age>
 {

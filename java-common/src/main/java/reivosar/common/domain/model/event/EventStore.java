@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
-import reivosar.common.domain.model.ValueObject;
+import reivosar.common.util.model.ValueObject;
 
 public class EventStore extends ValueObject<EventStore>
 {
@@ -26,7 +26,7 @@ public class EventStore extends ValueObject<EventStore>
 
 	public Collection<Event> allEvents(EventVersion eventVersion) {
 		return allEvents().stream()
-			.filter  (event -> event.getEventVersion() == eventVersion.value)
+			.filter  (event -> eventVersion.equals(eventVersion))
 			.collect (Collectors.toUnmodifiableList());
 	}
 

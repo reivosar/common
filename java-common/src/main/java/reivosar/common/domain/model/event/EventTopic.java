@@ -1,6 +1,6 @@
 package reivosar.common.domain.model.event;
 
-import reivosar.common.domain.model.ValueObject;
+import reivosar.common.util.model.ValueObject;
 
 public class EventTopic extends ValueObject<EventTopic>
 {

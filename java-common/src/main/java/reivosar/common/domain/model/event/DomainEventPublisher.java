@@ -1,7 +1,7 @@
 package reivosar.common.domain.model.event;
 
-import reivosar.common.domain.model.Identity;
 import reivosar.common.util.concurrent.promise.Promise;
+import reivosar.common.util.model.Identity;
 
 public interface DomainEventPublisher
 {
