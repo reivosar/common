@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import reivosar.common.util.collection.IteratorUtil;
@@ -56,15 +57,15 @@ public abstract class HeadersTemplate extends ValueObject<HeadersTemplate> imple
     }
 
     @Override
-    public final Header lastHeader(final HeaderKey key) {
+    public final Optional<Header> lastHeader(final HeaderKey key) {
         checkKey(key);
         for (int i = headers.size() - 1; i >= 0; i--) {
             Header header = headers.get(i);
             if (header.key.equals(key)) {
-                return header;
+                return Optional.of(header);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
