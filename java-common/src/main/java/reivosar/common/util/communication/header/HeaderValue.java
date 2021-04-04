@@ -22,7 +22,7 @@ public abstract class HeaderValue extends ValueObject<HeaderValue> {
         this.values = values;
     }
 
-    public Collection<Object> allValues​() {
+    public Collection<Object> allValues() {
         return values;
     }
 
@@ -30,16 +30,16 @@ public abstract class HeaderValue extends ValueObject<HeaderValue> {
         return CollectionUtil.isNotEmpty(values);
     }
 
-    public Optional<Object> firstValue​() {
+    public Optional<Object> firstValues() {
         return values.stream().findFirst();
     }
 
-    public Optional<String> firstValueAsString​() {
-        return Optional.of(ObjectUtil.defaultIfNull(firstValue​().get(), "").toString());
+    public Optional<String> firstValueAsString() {
+        return Optional.of(ObjectUtil.defaultIfNull(firstValues().get(), "").toString());
     }
 
     public OptionalLong firstValueAsLong() {
-        final String str = firstValueAsString​().get();
+        final String str = firstValueAsString().get();
         if (!StringUtil.isNumeric(str))
             return OptionalLong.empty();
         return OptionalLong.of(Long.parseLong(str));
