@@ -1,6 +1,8 @@
 package reivosar.common.util.communication.response;
 
-public class ResponseStatus {
+import reivosar.common.util.model.ValueObject;
+
+public class ResponseStatus extends ValueObject<ResponseStatus> {
     private enum TYPE {
         SUCCESS() {
             @Override
@@ -17,9 +19,9 @@ public class ResponseStatus {
         };
     }
 
-    public static final ResponseStatus SUCCESS = new ResponseStatus(TYPE.SUCCESS);
-    public static final ResponseStatus CLIENT_ERROR = new ResponseStatus(TYPE.CLIENT_ERROR);
-    public static final ResponseStatus SERVER_ERROR = new ResponseStatus(TYPE.SERVER_ERROR);
+    public static final ResponseStatus SUCCESS       = new ResponseStatus(TYPE.SUCCESS);
+    public static final ResponseStatus CLIENT_ERROR  = new ResponseStatus(TYPE.CLIENT_ERROR);
+    public static final ResponseStatus SERVER_ERROR  = new ResponseStatus(TYPE.SERVER_ERROR);
     public static final ResponseStatus UNKNOWN_ERROR = new ResponseStatus(TYPE.UNKNOWN_ERROR);
 
     private final TYPE type;
