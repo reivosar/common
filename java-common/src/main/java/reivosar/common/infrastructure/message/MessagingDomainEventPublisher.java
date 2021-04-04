@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import reivosar.common.domain.model.Identity;
 import reivosar.common.domain.model.event.DomainEventPublisher;
 import reivosar.common.domain.model.event.Event;
 import reivosar.common.domain.model.event.EventableEntity;
 import reivosar.common.event.EventBus;
 import reivosar.common.util.concurrent.promise.Promise;
+import reivosar.common.util.model.Identity;
 
 @Component("MessagingDomainEventPublisher")
 public class MessagingDomainEventPublisher implements DomainEventPublisher

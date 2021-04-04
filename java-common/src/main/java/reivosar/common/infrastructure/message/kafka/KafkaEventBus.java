@@ -6,8 +6,10 @@ import org.springframework.stereotype.Component;
 
 import reivosar.common.domain.model.event.Event;
 import reivosar.common.event.EventBus;
-import reivosar.common.event.EventPublishException;
+import reivosar.common.event.EventResponse;
 import reivosar.common.util.JsonUtil;
+import reivosar.common.util.communication.response.ResponseStatus;
+import reivosar.common.util.lang.TimeMeasurement;
 
 @Component("KafkaEventBus")
 public class KafkaEventBus implements EventBus {
@@ -15,16 +17,20 @@ public class KafkaEventBus implements EventBus {
     private final KafkaTemplate<String, String> template;
 
     @Autowired
-    public KafkaEventBus(KafkaTemplate<String, String> template) {
+    public KafkaEventBus(final KafkaTemplate<String, String> template) {
         this.template = template;
     }
 
     @Override
-    public Object publish(Event event) {
+    public EventResponse publish(final Event event) {
+        final TimeMeasurement tm = TimeMeasurement.ready().start();
         try {
-            return this.template.send(event.getEventTopic(), JsonUtil.toJson(event));
+            this.template.send(event.getEventTopic(), JsonUtil.toJson(event));
+            return new KafkaEventResponse(ResponseStatus.SUCCESS, tm);
         } catch (Exception cause) {
-            throw new EventPublishException(cause);
+            return new KafkaEventResponse(ResponseStatus.CLIENT_ERROR, tm);
+        } finally {
+            tm.stop();
         }
     }
 }
