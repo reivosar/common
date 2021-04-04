@@ -8,7 +8,11 @@ public interface Headers extends Iterable<Header>
 
     Headers add(HeaderKey key, HeaderValue value);
 
-    Headers remove(HeaderKey key) ;
+    Headers remove(HeaderKey key);
+
+    boolean hasHeader();
+
+    int countHeader();
 
     Optional<Header> lastHeader(HeaderKey key);
 

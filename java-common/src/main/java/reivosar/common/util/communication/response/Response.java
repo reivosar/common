@@ -2,7 +2,7 @@ package reivosar.common.util.communication.response;
 
 public interface Response
 {
-    ResponseStatus state();
+    ResponseStatus status();
 
     ResponseHeaders headers();
 

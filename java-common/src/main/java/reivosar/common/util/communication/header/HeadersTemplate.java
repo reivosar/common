@@ -34,6 +34,16 @@ public abstract class HeadersTemplate extends ValueObject<HeadersTemplate> imple
     }
 
     @Override
+    public int countHeader() {
+        return headers.size();
+    }
+
+    @Override
+    public boolean hasHeader() {
+        return countHeader() > 0;
+    }
+
+    @Override
     public final Headers add(final Header header) {
         checkHeader(header);
         this.headers.add(header);
