@@ -1,5 +1,7 @@
 package reivosar.common.infrastructure.message.kafka;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,7 @@ public class KafkaEventBus implements EventBus {
 
     @Override
     public EventResponse publish(final Event event) {
+        Objects.requireNonNull(event, "event must not be null");
         final TimeMeasurement tm = TimeMeasurement.ready().start();
         try {
             this.template.send(event.getEventTopic(), JsonUtil.toJson(event));

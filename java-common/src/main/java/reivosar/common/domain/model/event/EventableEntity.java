@@ -14,7 +14,7 @@ public abstract class EventableEntity<ID extends Identity<ID>, ENTITY> extends E
 		this.store = new EventStore();
 	}
 
-	protected <R extends EventableEntity<ID, ENTITY>> R apply(Event...domainEvents) {
+	protected <R extends EventableEntity<ID, ENTITY>> R apply(final Event...domainEvents) {
 		this.store.eventOccurred(domainEvents);
 		return (R) this;
 	}
@@ -23,7 +23,7 @@ public abstract class EventableEntity<ID extends Identity<ID>, ENTITY> extends E
 		return store.allEvents();
 	}
 
-	public Collection<Event> allEvents(EventVersion eventVersion) {
+	public Collection<Event> allEvents(final EventVersion eventVersion) {
 		return store.allEvents(eventVersion);
 	}
 

@@ -1,6 +1,7 @@
 package reivosar.common.infrastructure.message;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -20,13 +21,15 @@ public class MessagingDomainEventPublisher implements DomainEventPublisher
     private final EventBus eventBus;
 
     @Autowired
-    public MessagingDomainEventPublisher(EventBus eventBus) {
+    public MessagingDomainEventPublisher(final EventBus eventBus) {
         this.eventBus = eventBus;
     }
 
     @Override
     public <ID extends Identity<ID>, ENTITY extends EventableEntity<ID, ENTITY>>
-    void asyncPublish(ENTITY entity) {
+    void asyncPublish(final ENTITY entity)
+    {
+        Objects.requireNonNull(entity, "entity must not be null");
         Promise.single()
             .then  (eventSuppliers(entity.allEvents()))
             .async ();
@@ -34,8 +37,9 @@ public class MessagingDomainEventPublisher implements DomainEventPublisher
 
     @Override
     public <ID extends Identity<ID>, ENTITY extends EventableEntity<ID, ENTITY>>
-    Promise<Object> awaitPublish(ENTITY entity)
+    Promise<Object> awaitPublish(final ENTITY entity)
     {
+        Objects.requireNonNull(entity, "entity must not be null");
         return Promise.single()
                 .then  (eventSuppliers(entity.allEvents()))
                 .await ();
