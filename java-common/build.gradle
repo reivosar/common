@@ -35,6 +35,9 @@ repositories {
 }
 
 dependencies {
+    //Javax
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
     //Spring
     compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.3.5.RELEASE'
 
