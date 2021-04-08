@@ -1,13 +1,11 @@
 package reivosar.common.util.model;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public abstract class Model implements Serializable
+public abstract class Model
 {
 	@Override
 	public boolean equals(Object obj) {

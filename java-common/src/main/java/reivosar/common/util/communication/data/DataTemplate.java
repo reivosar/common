@@ -15,11 +15,11 @@ public abstract class DataTemplate implements Data
         this(new ArrayList<Payload>());
     }
 
-    public DataTemplate(final List<Payload> headers) {
-        if (headers == null) {
+    public DataTemplate(final List<Payload> payloads) {
+        if (payloads == null) {
             this.payloads = new ArrayList<>();
         } else {
-            this.payloads = new ArrayList<>(headers);
+            this.payloads = new ArrayList<>(payloads);
         }
     }
 
